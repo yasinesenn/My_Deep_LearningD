@@ -4,22 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Image Upload{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         /* Genel Sayfa Ayarları */
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f4f4f9;
+            background-color: white;
             margin: 0;
             padding: 0;
             display: flex;
+            color: #0d0d0d;
+            font-size: medium;
         }
 
         /* Sidebar Stili */
         .sidebar {
             height: 100vh;
-            width: 200px;
-            background-color: #333;
-            color: white;
+            width: 260px;
+            background-color: #f4f4f4;
             position: fixed;
             top: 0;
             left: 0;
@@ -35,39 +37,46 @@
 
         .sidebar a {
             display: block;
-            color: white;
+            color: #0d0d0d;
             padding: 15px;
             text-decoration: none;
-            font-size: 18px;
-            border-bottom: 1px solid #444;
-            transition: background-color 0.3s;
+            margin: 1rem;
+            border-radius: 1rem;
+            background-color: #ececec;
+            transition: ease-in-out .2s;
         }
 
         .sidebar a:hover {
-            background-color: #575757;
+            background-color: #e2e2e2;
         }
 
         /* İçerik Konteyneri */
         .content {
-            margin-left: 220px; /* Sidebar'dan sonra başlar */
+            margin-left: 260px; /* Sidebar'dan sonra başlar */
             padding: 20px;
             width: 100%;
+            height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .container {
-            background-color: #fff;
             padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             width: 100%;
             max-width: 600px;
             text-align: center;
             margin: 0 auto;
         }
 
+        .upload-container {
+            background-color: #f4f4f4;
+            padding: 2rem;
+            border-radius: 1rem;
+        }
+
         h1 {
-            font-size: 24px;
-            color: #4CAF50;
+            font-size: x-large;
             margin-bottom: 20px;
         }
 
@@ -77,29 +86,47 @@
             align-items: center;
         }
 
-        form p {
-            margin-bottom: 15px;
-            font-size: 14px;
-            color: #555;
-        }
-
         input[type="file"] {
             margin-bottom: 20px;
         }
 
         button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
+           background-color: #161414;
+           padding: 10px 100px;
+           border-radius: 500px;
+           color: white;
+           font-size: medium;
+           cursor: pointer;
+           transition: ease-in-out .2s;
+           outline: none;
+           border: none;
+           display: flex;
+           gap: .5rem;
+        }
+
+        input::file-selector-button {
+            font-weight: bold;
+            color: #161414;
+            padding: .5rem 1rem;
+            border-radius: 100px;
+            background-color: white;
+            border: 2px solid #161414;
+            transition: ease-in-out .2s;
             cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+        }
+
+        form p {
+            color: #161414;
+            font-size: medium;
+        }
+
+        input::file-selector-button:hover {
+            background-color: #161414;
+            color: white;
         }
 
         button:hover {
-            background-color: #45a049;
+           background-color: #ea8444;
         }
 
         #result {
@@ -129,9 +156,8 @@
 <body>
     <!-- Sidebar Başlangıcı -->
     <div class="sidebar">
-        <h2>Menü</h2>
-        <a href="{% url 'image_upload' %}">Görsel Tahmin</a>
-        <a href="{% url 'statistics' %}">İstatistikler</a>
+        <a href="{% url 'image_upload' %}"><i style="color: #cb8bd0" class="fa-solid fa-image"></i>&nbsp;&nbsp;Görsel Tahmin</a>
+        <a href="{% url 'statistics' %}"><i style="color: #49b659"class="fa-solid fa-chart-line"></i>&nbsp;&nbsp;İstatistikler</a>
     </div>
 
     <!-- İçerik Alanı -->
